@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PortCo Operations Control Tower</title>
+    <meta name="theme-color" content="#101828" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="PortCo Tower" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="description" content="Installable PortCo capacity control tower app for berth, yard, reefer, truck, rail and productivity decisions." />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Primary navigation">
+        <div class="brand">
+          <div class="brand-mark">PC</div>
+          <div>
+            <p>PortCo</p>
+            <span>Capacity control tower</span>
+          </div>
+        </div>
+
+        <nav class="nav-list">
+          <button class="nav-item active" data-view="overview">
+            <span class="icon ship"></span>
+            Control tower
+          </button>
+          <button class="nav-item" data-view="booking">
+            <span class="icon truck"></span>
+            Truck booking
+          </button>
+          <button class="nav-item" data-view="tracking">
+            <span class="icon route"></span>
+            Customer tracking
+          </button>
+          <button class="nav-item" data-view="forecasting">
+            <span class="icon forecast"></span>
+            Capacity forecast
+          </button>
+          <button class="nav-item" data-view="productivity">
+            <span class="icon productivity"></span>
+            Productivity plan
+          </button>
+          <button class="nav-item" data-view="optimizer">
+            <span class="icon crane"></span>
+            Capacity optimiser
+          </button>
+        </nav>
+
+        <div class="budget-card">
+          <span>Development budget</span>
+          <strong>A$1.2bn</strong>
+          <small>Ranked by usable capacity per dollar</small>
+        </div>
+      </aside>
+
+      <main>
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Question 1 recommendation</p>
+            <h1>Integrated digital platform for port capacity relief</h1>
+          </div>
+          <div class="status-strip">
+            <div><span class="live-dot"></span>Live simulation</div>
+            <div>Peak week</div>
+            <div>Port of Kembla</div>
+          </div>
+        </header>
+
+        <section class="view active" id="overview">
+          <section class="summary-grid">
+            <article class="metric urgent">
+              <span>Vessel wait at anchor</span>
+              <strong>45%</strong>
+              <small>Target after platform: 31-36%</small>
+            </article>
+            <article class="metric">
+              <span>Average turnaround</span>
+              <strong>48.5h</strong>
+              <small>Benchmark: 32h local gateway</small>
+            </article>
+            <article class="metric">
+              <span>Container dwell</span>
+              <strong>4.8d</strong>
+              <small>Target: 3.0d</small>
+            </article>
+            <article class="metric warning">
+              <span>Reefer plug use</span>
+              <strong>98%</strong>
+              <small>2,400 plugs saturated in peaks</small>
+            </article>
+          </section>
+
+          <section class="workspace-grid">
+            <article class="operations-map">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Single source of truth</p>
+                  <h2>What the system looks like</h2>
+                </div>
+                <button class="primary-action" id="rebalanceBtn">Run rebalance</button>
+              </div>
+
+              <div class="port-visual" aria-label="PortCo operating system map">
+                <svg viewBox="0 0 920 380" role="img">
+                  <defs>
+                    <linearGradient id="water" x1="0" x2="1">
+                      <stop offset="0" stop-color="#0f766e" />
+                      <stop offset="1" stop-color="#2563eb" />
+                    </linearGradient>
+                  </defs>
+                  <rect x="0" y="0" width="920" height="380" rx="18" fill="#f7fafc" />
+                  <path d="M0 245 C130 218 228 265 360 235 C500 204 605 252 740 226 C820 211 875 222 920 205 L920 380 L0 380 Z" fill="url(#water)" opacity=".9" />
+                  <rect x="60" y="58" width="545" height="188" rx="12" fill="#ffffff" stroke="#cbd5e1" />
+                  <rect x="82" y="78" width="106" height="84" rx="8" fill="#eef2ff" />
+                  <rect x="202" y="78" width="106" height="84" rx="8" fill="#ecfeff" />
+                  <rect x="322" y="78" width="106" height="84" rx="8" fill="#fef3c7" />
+                  <rect x="442" y="78" width="136" height="84" rx="8" fill="#dcfce7" />
+                  <line x1="112" y1="178" x2="112" y2="230" stroke="#4f46e5" stroke-width="8" />
+                  <line x1="238" y1="178" x2="238" y2="230" stroke="#4f46e5" stroke-width="8" />
+                  <line x1="364" y1="178" x2="364" y2="230" stroke="#4f46e5" stroke-width="8" />
+                  <path d="M94 106 h62 l-14 40 h-34 z" fill="#4338ca" />
+                  <path d="M236 96 l46 52 h-86 z" fill="#0891b2" />
+                  <path d="M343 92 h58 v58 h-58 z M355 102 v40 M374 102 v40 M343 122 h58" stroke="#b45309" stroke-width="5" fill="none" />
+                  <path d="M466 105 h92 v42 h-92 z M486 90 v15 M538 90 v15" stroke="#15803d" stroke-width="6" fill="none" />
+                  <rect x="646" y="82" width="210" height="104" rx="12" fill="#ffffff" stroke="#cbd5e1" />
+                  <text x="671" y="115" class="svg-label">Readiness gate</text>
+                  <text x="671" y="143" class="svg-small">Only book trucks / rail</text>
+                  <text x="671" y="164" class="svg-small">when box is cleared</text>
+                  <circle cx="824" cy="134" r="18" fill="#16a34a" />
+                  <path d="M814 134 l8 8 l17 -20" stroke="#fff" stroke-width="5" fill="none" />
+                  <rect x="642" y="222" width="214" height="88" rx="12" fill="#ffffff" stroke="#cbd5e1" />
+                  <text x="667" y="255" class="svg-label">Predictive alerts</text>
+                  <text x="667" y="283" class="svg-small">Congestion risk: 78%</text>
+                  <path d="M97 304 h210" stroke="#ffffff" stroke-width="10" opacity=".7" />
+                  <path d="M98 304 h68 l18 -28 h72 l25 28 h26" stroke="#1e1b4b" stroke-width="8" fill="none" />
+                  <circle cx="132" cy="319" r="12" fill="#1e1b4b" />
+                  <circle cx="256" cy="319" r="12" fill="#1e1b4b" />
+                  <path d="M422 284 h145 l34 30 h-202 z" fill="#e0f2fe" stroke="#075985" stroke-width="6" />
+                  <rect x="437" y="250" width="92" height="36" fill="#075985" />
+                </svg>
+              </div>
+
+              <div class="module-grid">
+                <button class="module active" data-module="vessel">Vessel and berth scheduling</button>
+                <button class="module" data-module="labour">Crane and labour allocation</button>
+                <button class="module" data-module="yard">Yard-stack optimisation</button>
+                <button class="module" data-module="reefer">Reefer monitoring</button>
+                <button class="module" data-module="truck">Truck appointments</button>
+                <button class="module" data-module="rail">Rail, road and customer visibility</button>
+                <button class="module" data-module="alerts">Predictive delay alerts</button>
+              </div>
+            </article>
+
+            <aside class="decision-panel">
+              <div class="section-heading compact">
+                <div>
+                  <p class="eyebrow">Recommended mix</p>
+                  <h2>Capacity per dollar</h2>
+                </div>
+              </div>
+              <div class="rank-list" id="rankList"></div>
+            </aside>
+          </section>
+
+          <section class="insight-band">
+            <div>
+              <p class="eyebrow">Expected effect</p>
+              <h2 id="moduleTitle">Vessel and berth scheduling</h2>
+              <p id="moduleCopy">Dynamic berth windows sequence arrivals against quay length, crane reach and tidal constraints so larger vessels are worked first when they unlock the most TEU-hours.</p>
+            </div>
+            <div class="impact-bars" id="impactBars"></div>
+          </section>
+        </section>
+
+        <section class="view" id="booking">
+          <section class="portal-layout">
+            <article class="booking-panel">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Carrier portal</p>
+                  <h2>Book only when the container is ready</h2>
+                </div>
+                <span class="pill good">Readiness rule active</span>
+              </div>
+              <form class="booking-form" id="bookingForm">
+                <label>Container ID<input value="PCOU-482193-7" /></label>
+                <label>Carrier<select><option>BlueLine Transport</option><option>SouthCoast Freight</option><option>Darnley Logistics</option></select></label>
+                <label>Move type<select id="moveType"><option>Import pickup</option><option>Export receival</option><option>Empty return</option></select></label>
+                <label>Preferred window<select id="slotSelect"></select></label>
+                <button class="primary-action" type="submit">Confirm appointment</button>
+              </form>
+            </article>
+            <article class="slot-board">
+              <div class="section-heading compact">
+                <div>
+                  <p class="eyebrow">Gate load</p>
+                  <h2>Appointment windows</h2>
+                </div>
+              </div>
+              <div class="slots" id="slots"></div>
+            </article>
+          </section>
+        </section>
+
+        <section class="view" id="tracking">
+          <section class="tracking-grid">
+            <article class="tracking-map">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Customer portal</p>
+                  <h2>Rail, road and container visibility</h2>
+                </div>
+                <span class="pill">ETA refreshed 2 min ago</span>
+              </div>
+              <div class="route-card">
+                <svg viewBox="0 0 760 280" role="img" aria-label="Port to inland route">
+                  <rect width="760" height="280" rx="16" fill="#f8fafc" />
+                  <path d="M78 202 C180 92 284 210 380 112 C474 16 574 74 684 44" stroke="#4f46e5" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="1 22" />
+                  <circle cx="78" cy="202" r="20" fill="#0f766e" />
+                  <circle cx="380" cy="112" r="20" fill="#f59e0b" />
+                  <circle cx="684" cy="44" r="20" fill="#16a34a" />
+                  <text x="48" y="248" class="svg-label">PortCo</text>
+                  <text x="320" y="156" class="svg-label">Rail handoff</text>
+                  <text x="595" y="86" class="svg-label">Darnley DC</text>
+                </svg>
+              </div>
+            </article>
+            <article class="event-feed">
+              <div class="section-heading compact">
+                <div>
+                  <p class="eyebrow">Shipment PCOU-482193-7</p>
+                  <h2>Status timeline</h2>
+                </div>
+              </div>
+              <div class="timeline" id="timeline"></div>
+            </article>
+          </section>
+        </section>
+
+        <section class="view" id="forecasting">
+          <section class="forecast-layout">
+            <article class="forecast-panel">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">7-day forecast</p>
+                  <h2>Available capacity by constraint</h2>
+                </div>
+                <div class="forecast-tools">
+                  <select id="forecastMode" aria-label="Forecast mode">
+                    <option value="base">Current operating plan</option>
+                    <option value="platform">After digital rebalancing</option>
+                    <option value="stress">Peak demand stress case</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="forecast-summary" id="forecastSummary"></div>
+              <div class="forecast-chart" id="forecastChart" aria-label="Available capacity forecast"></div>
+            </article>
+
+            <aside class="forecast-actions">
+              <div class="section-heading compact">
+                <div>
+                  <p class="eyebrow">Next best actions</p>
+                  <h2>Protect usable capacity</h2>
+                </div>
+              </div>
+              <div class="action-list" id="forecastActions"></div>
+            </aside>
+          </section>
+        </section>
+
+        <section class="view" id="productivity">
+          <section class="productivity-hero">
+            <div>
+              <p class="eyebrow">Recommendation 1</p>
+              <h2>Improve asset productivity before major expansion</h2>
+              <p>PortCo should prioritise digital coordination, yard and gate optimisation, reefer expansion and targeted crane upgrades, while deferring major berth and channel works until demand triggers are proven.</p>
+            </div>
+            <div class="hero-outcome">
+              <span>Near-term package</span>
+              <strong>A$137m</strong>
+              <small>first 3 years</small>
+            </div>
+          </section>
+
+          <section class="productivity-finance">
+            <article>
+              <span>Total first-phase investment</span>
+              <strong>A$137m</strong>
+              <small>A$119m capex plus A$18m rail opex</small>
+            </article>
+            <article>
+              <span>EBITDA uplift</span>
+              <strong>A$22-34m</strong>
+              <small>annual impact by year 3</small>
+            </article>
+            <article>
+              <span>Maintenance savings</span>
+              <strong>A$4-7m</strong>
+              <small>annual reduction from crane and reefer reliability</small>
+            </article>
+            <article>
+              <span>Payback signal</span>
+              <strong>~4 years</strong>
+              <small>before committing to major berth/channel works</small>
+            </article>
+          </section>
+
+          <section class="priority-grid">
+            <article class="priority-card">
+              <div class="priority-number">1</div>
+              <p class="eyebrow">Priority 1</p>
+              <h2>Integrated terminal control system</h2>
+              <p>Connect vessels, yard, cranes, gates, reefers, trucks and rail in real time so cargo moves faster through the same footprint.</p>
+              <ul>
+                <li>Truck turnaround: 58 minutes to 40-45 minutes</li>
+                <li>Missed or rescheduled pickups: 18% to below 10%</li>
+                <li>Peak gate overload: 30% to below 10-15%</li>
+                <li>Average vessel turnaround: 48.5 hours to 32-36 hours</li>
+                <li>Average container dwell: 4.8 days to approximately 3 days</li>
+              </ul>
+            </article>
+
+            <article class="priority-card teal">
+              <div class="priority-number">2</div>
+              <p class="eyebrow">Priority 2</p>
+              <h2>Yard redesign and extended gate operations</h2>
+              <p>Reconfigure the terminal yard into dedicated import, export, reefer, empty and fast-pickup zones, then extend gate hours before building new land.</p>
+              <div class="yard-diagram">
+                <span>Import zone</span>
+                <span>Fast pickup lane</span>
+                <span>Export zone</span>
+                <span>Reefer zone</span>
+                <span>Inspection and customs</span>
+                <span>Empty container zone</span>
+              </div>
+              <ul>
+                <li>Usable yard capacity: 4% to 15%</li>
+                <li>Faster container retrieval and fewer reshuffles</li>
+                <li>Lower truck queues, road congestion and land expansion pressure</li>
+              </ul>
+            </article>
+
+            <article class="priority-card">
+              <div class="priority-number">3</div>
+              <p class="eyebrow">Priority 3</p>
+              <h2>Add 600-800 reefer plugs</h2>
+              <p>Grow capacity from about 2,400 plugs to 3,000-3,200 smart monitored plugs for the fastest-growing and highest-value cargo segment.</p>
+              <div class="plug-comparison">
+                <div><strong>Current</strong><span>2,400 plugs</span></div>
+                <div class="plug-arrow">to</div>
+                <div><strong>Future</strong><span>3,000-3,200 plugs</span></div>
+              </div>
+              <ul>
+                <li>Reefer capacity uplift: 25% to 33%</li>
+                <li>Reduces immediate unpowered-reefer risk</li>
+                <li>Supports December-March agricultural export peak</li>
+                <li>Enables energy-based pricing and AI monitoring</li>
+              </ul>
+            </article>
+
+            <article class="priority-card teal">
+              <div class="priority-number">4</div>
+              <p class="eyebrow">Priority 4</p>
+              <h2>Targeted crane upgrades</h2>
+              <p>Retrofit three cranes with insufficient outreach, replace two high-risk cranes, and refurbish the remaining fleet.</p>
+              <ul>
+                <li>Faster handling of 5,400-6,500 TEU vessels</li>
+                <li>Lower vessel turnaround and berth occupancy</li>
+                <li>Less dependence on limited-capability cranes</li>
+                <li>Illustrative maintenance saving target: A$3.9-7.8m per year</li>
+              </ul>
+            </article>
+
+            <article class="priority-card defer">
+              <div class="priority-number">5</div>
+              <p class="eyebrow">Priority 5</p>
+              <h2>Defer major berth and channel works</h2>
+              <p>Start feasibility, design and approvals now, but proceed with major civil works only when clear demand and operating triggers are met.</p>
+              <div class="option-list">
+                <span>Berth strengthening or selective extension</span>
+                <span>Major berth expansion</span>
+                <span>Channel deepening</span>
+                <span>Channel feasibility and approvals</span>
+              </div>
+              <ul>
+                <li>Preserves capital for higher-return near-term actions</li>
+                <li>Keeps berth and channel options ready</li>
+                <li>Avoids premature, hard-to-reverse investment</li>
+              </ul>
+            </article>
+          </section>
+
+          <section class="investment-mix">
+            <article>
+              <p class="eyebrow">Investment allocation</p>
+              <h2>Use the A$137m to remove operating bottlenecks first</h2>
+              <div class="allocation-list">
+                <div><span>Reefer infrastructure</span><strong>A$55m | 42%</strong></div>
+                <div><span>Crane retrofit</span><strong>A$21m | 18%</strong></div>
+                <div><span>Inland cold-chain partnership</span><strong>A$15m | 13%</strong></div>
+                <div><span>Digital systems</span><strong>A$10m | 8%</strong></div>
+                <div><span>Gate and yard optimisation</span><strong>A$7m | 6%</strong></div>
+                <div><span>Program management and contingency</span><strong>A$16m | 12%</strong></div>
+                <div><span>Pricing implementation</span><strong>A$2m | 2%</strong></div>
+              </div>
+            </article>
+            <article>
+              <p class="eyebrow">Roadmap</p>
+              <h2>Stage delivery across years 1-3</h2>
+              <div class="roadmap">
+                <div><strong>Year 1</strong><span>Reefer plug uplift, retrofit 3 cranes, digital maintenance</span></div>
+                <div><strong>Year 2</strong><span>Truck appointments, rail capacity contract, cold-chain partner</span></div>
+                <div><strong>Year 3</strong><span>Optimise yard flow and scale predictive maintenance</span></div>
+              </div>
+            </article>
+          </section>
+        </section>
+
+        <section class="view" id="optimizer">
+          <section class="optimizer-layout">
+            <article class="optimizer-controls">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Board decision tool</p>
+                  <h2>Choose the capacity interventions</h2>
+                </div>
+              </div>
+              <div id="interventionControls"></div>
+            </article>
+            <article class="business-case">
+              <p class="eyebrow">Scenario output</p>
+              <h2 id="scenarioName">Balanced digital-first package</h2>
+              <div class="scenario-metrics">
+                <div><span>Total investment</span><strong id="capexOut">A$137m</strong></div>
+                <div><span>EBITDA uplift</span><strong id="capacityOut">A$22-34m</strong></div>
+                <div><span>Maintenance savings</span><strong id="efficiencyOut">A$4-7m</strong></div>
+                <div><span>Payback signal</span><strong id="paybackOut">~4 years</strong></div>
+              </div>
+              <p class="recommendation" id="recommendationCopy"></p>
+            </article>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
